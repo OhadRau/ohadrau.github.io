@@ -12,4 +12,4 @@ Executable "ohad.space"
   Path: .
   MainIs: ssg.ml
   CompiledObject: best
-  BuildDepends: tyxml
+  BuildDepends: core, threads, omd, tyxml, tyxml.ppx
