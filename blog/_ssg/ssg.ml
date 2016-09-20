@@ -35,7 +35,7 @@ let make_post post_title post_body = [%html {|
       <title>|} (Html.pcdata post_title) {|</title>
     </head>
     <body>
-      <div id="contents">|} [Html.pcdata post_body] {|</div>
+      <div id="contents">|} [Html.Unsafe.data post_body] {|</div>
     </body>
   </html>
 |}]
