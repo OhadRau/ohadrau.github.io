@@ -1,0 +1,15 @@
+Name: ohad.space
+Version: 1.0.0
+Synopsis: Static site generator for ohad.space
+Authors: ohadrau <ohadrau@yahoo.com>
+License: GPL-2
+
+OASISFormat: 0.4
+BuildTools: ocamlbuild
+Plugins: META (0.4), DevFiles (0.4)
+
+Executable "ohad.space"
+  Path: .
+  MainIs: ssg.ml
+  CompiledObject: best
+  BuildDepends: tyxml
