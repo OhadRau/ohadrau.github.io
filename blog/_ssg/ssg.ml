@@ -19,14 +19,24 @@ let make_link (post_url, post_title) =
 let stylesheet = Html.Unsafe.data {|
   #posts {
     text-align: center;
-  }
-
-  #posts, #contents {
     margin: 20%;
     margin-left: 30%;
     margin-right: 30%;
+  }
+
+  #contents {
+    margin: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+
+  #posts, #contents {
     padding 8px;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
   }
 
   a {
