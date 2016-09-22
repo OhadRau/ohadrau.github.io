@@ -17,19 +17,22 @@ let make_link (post_url, post_title) =
   Html.(a ~a:[a_href post_url] [pcdata post_title])
 
 let stylesheet = Html.Unsafe.data {|
-  #posts, #content {
+  #posts {
     text-align: center;
+  }
+
+  #posts, #contents {
     margin: 20%;
     margin-left: 30%;
     margin-right: 30%;
     padding 8px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
   }
 
   a {
     display: block;
     color: #202020;
     font-size: 120%;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
   }
 
   a:hover {
