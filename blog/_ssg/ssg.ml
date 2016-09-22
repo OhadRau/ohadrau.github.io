@@ -16,11 +16,33 @@ let html_of_file file =
 let make_link (post_url, post_title) =
   Html.(a ~a:[a_href post_url] [pcdata post_title])
 
+let stylesheet = Html.Unsafe.data {|
+  #posts, #content {
+    text-align: center;
+    margin: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding 8px;
+  }
+
+  a {
+    display: block;
+    color: #202020;
+    font-size: 120%;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+  }
+
+  a:hover {
+    color: #000;
+  }
+|}
+
 let make_index post_info = [%html {|
   <html>
     <head>
       <meta charset="UTF-8"/>
       <title>ohad.space blog</title>
+      <style>|} [stylesheet] {|</style>
     </head>
     <body>
       <div id="posts">|} (List.map ~f:make_link post_info) {|</div>
@@ -33,6 +55,7 @@ let make_post post_title post_body = [%html {|
     <head>
       <meta charset="UTF-8"/>
       <title>|} (Html.pcdata post_title) {|</title>
+      <style>|} [stylesheet] {|</style>
     </head>
     <body>
       <div id="contents">|} [Html.Unsafe.data post_body] {|</div>
