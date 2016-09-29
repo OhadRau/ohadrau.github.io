@@ -14,7 +14,7 @@ let html_of_file file =
   file |> In_channel.read_all |> Omd.of_string |> Omd.to_html
 
 let make_link (post_url, post_title) =
-  Html.(a ~a:[a_href post_url] [pcdata post_title])
+  Html.(a ~a:[a_href post_url; a_class ["article_link"]] [pcdata post_title])
 
 let stylesheet = Html.Unsafe.data {|
   #posts {
@@ -39,7 +39,7 @@ let stylesheet = Html.Unsafe.data {|
     text-align: center;
   }
 
-  a {
+  a.article_link {
     display: block;
     color: #202020;
     font-size: 120%;
