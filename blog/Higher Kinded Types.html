@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Higher Kinded Types</title><meta charset="UTF-8"/><style>
+  #posts {
+    text-align: center;
+    margin: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+
+  #contents {
+    margin: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+
+  #posts, #contents {
+    padding 8px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+  }
+
+  a.article_link {
+    display: block;
+    color: #202020;
+    font-size: 120%;
+  }
+
+  a:hover {
+    color: #000;
+  }
+</style></head><body>
+      <div id="contents"><h1 id="HigherKindedTypes">Higher Kinded Types</h1>
+
+<p>I remember when I was first learning Haskell, one of the terms being thrown around all the time was higher-kinded types. Coming from OCaml, it was commonly referenced as one of the major differences between the two languages. But as much as I tried to understand, I couldn&#39;t grasp what I now see as a simple concept. Every StackOverflow answer, blog post, or article I read about HKTs failed to explain the idea in a way that makes sense to me. It wasn&#39;t until I read <a href='http://www.sparxeng.com/blog/software/an-example-of-what-higher-kinded-types-could-make-possible-in-c'>a blog post on the repercussions of having HKTs available in C#</a> that I really started to understand the idea. Here&#39;s my attempt at explaining the idea in a way that wouldn&#39;t confuse me more.</p>
+<p>Anyone learning Haskell, Scala, ML, or another typed functional language can probably assign a type to a short term without much thought. In our hypothetical syntax, it would be trivial to say <code>1 : Int</code> and <code>add 1 : Int -&gt; Int</code>. If we go a little further and start giving types their own types, we enter the realm of Kinds.</p>
+<p>For example, it&#39;s pretty obvious that the type of <code>Int</code> is going to be <code>Type</code>. Somewhat confusingly at first, <code>Int -&gt; Int</code> is not <code>Type -&gt; Type</code>, but rather <code>Type</code> (since the type is not a function in and of itself, but rather a single term). It may make sense to assign a type to <code>(-&gt;)</code> at this point, which we could make <code>Type -&gt; Type -&gt; Type</code>. Notice how the standard types we talk about (<code>Int</code>, <code>Float -&gt; Int</code>, <code>(Int, String)</code>) all fall under the simple <code>Type</code>. This is probably weird at first... if we put all types into the same category, what&#39;s the use of categorizing them? Even seeing a kind given for <code>(-&gt;)</code> doesn&#39;t help us out much, as it&#39;s just some magical operator that&#39;s guaranteed to make sense.</p>
+<h2 id="Enterhigherkindedtypes">Enter higher-kinded types.</h2>
+
+<p>The reason we have for categorizing existing types is in fact due to HKTs. While <code>List Int : Type</code> isn&#39;t a very useful statement, <code>List : Type -&gt; Type</code> is a bit more interesting. Of course, it&#39;s not useful to think of <code>List</code> here in terms of its values... we aren&#39;t planning on writing a function of <code>(Type -&gt; Type) -&gt; Int</code> or anything of the sort. Where it gets interesting is when you write generic code. Let&#39;s start with a simple example:</p>
+<pre><code>f : forall (c : Type -&gt; Type), (a : Type), (b : Type).
+    c a -&gt; c b</code></pre>
+
+<p>Let&#39;s not get caught up over the details of defining such a function, but as an exercise it&#39;s useful to analyze this type. First of all, you&#39;ll notice the rather drawn out <code>forall</code> clause. In particular, it&#39;s worth noticing the fact that we give the type variables their own types. This is important, because it allows us to make <code>c</code> a higher-kinded type here (alternatively, something with more complexity than <code>Type</code> alone). Also, try to think of some examples for <code>c</code> here: some good ones include <code>List</code> and <code>Option</code> (or <code>Maybe</code>); an invalid example might be <code>Map</code> (which is <code>Type -&gt; Type -&gt; Type</code>, since we would normally write <code>Map Int String</code>).</p>
+<p>Now that we&#39;ve got this basic example in mind, let&#39;s think of somewhere we can actually use this concept. We all know parametric polymorphism allows us to write things like functions that can operate on any kind of list (<code>List a -&gt; (a -&gt; b) -&gt; List b</code> being the type of <code>map</code>). But it&#39;s quite hard to relate higher-kinded types as we&#39;ve seen them so far to any sort of real-world code. In fact, HKTs alone are of little use. It&#39;s not until we enter a language with some kind of ad-hoc polymorphism that we can even really use them. To be language-agnostic, I&#39;ll define my own system for ad-hoc polymorphism below:</p>
+<p><code>a -&gt; b | a, b &lt; Number</code> means &quot;a function from <code>a</code> to <code>b</code>, where <code>a</code> and <code>b</code> inherit from the interface <code>Number</code>.&quot; Less general types would include <code>Int -&gt; Int</code> and <code>Float -&gt; Int</code> in this case.</p>
+<p>For our own use, we will create an interface called <code>MapFn</code>. This interface can be inherited by any type with a corresponding <code>map</code> function. Let&#39;s write a few of these:</p>
+<pre><code>inherit MapFn for List
+  with map f [] = []
+       map f (x::xs) = f::(map f xs)
+
+inherit MapFn for Option
+  with map f None     = None
+       map f (Some x) = Some (f x)</code></pre>
+
+<p>With both <code>List</code> and <code>Option</code> available, it&#39;s useful to see some places where it might be helpful to have both within reach without forcing us to rewrite a function each time. For example, <code>mapTwice</code> might perform <code>map</code> with 2 different functions in a row. Rather than writing a whole interface and its implementations for <code>MapTwiceFn</code>, let&#39;s try to write this using HKTs.</p>
+<p>First of all, we know our function <code>mapTwice</code> is going to have a few type variables: <code>x</code>, the original type contained by the List/Option; <code>y</code>, the result of the first <code>map</code> and input to the second <code>map</code>; <code>z</code>, the result of the second <code>map</code>; and <code>c</code>, the container to be mapped over (which must either be List or Option). It&#39;s also quite easy to write the function itself:</p>
+<pre><code>let mapTwice f g xs =
+  let ys = map f xs
+  map g ys</code></pre>
+
+<p>Next, we can start to assign types to the individual variables. Let&#39;s refine this function:</p>
+<pre><code>let mapTwice (f : x -&gt; y) (g : y -&gt; z) (xs : c x) =
+  let ys : c y = map f xs
+  map g ys : c z</code></pre>
+
+<p>Finally, let&#39;s put together everything we know and give the whole function its type:</p>
+<pre><code>mapTwice : (x -&gt; y) -&gt; (y -&gt; z) -&gt; c x -&gt; c z</code></pre>
+
+<p>And how do we know what <code>c</code> is?</p>
+<pre><code>mapTwice : forall (x : Type), (y : Type), (z : Type), (c : Type -&gt; Type).
+           (x -&gt; y) -&gt; (y -&gt; z) -&gt; c x -&gt; c z
+           | c &lt; MapFn</code></pre></div>
+    </body></html>
