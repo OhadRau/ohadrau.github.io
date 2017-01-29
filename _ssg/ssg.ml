@@ -35,8 +35,13 @@ let stylesheet = Html.Unsafe.data {|
     font-family: "Trebuchet MS", Helvetica, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6, img {
+  h1, h2, h3, h4, h5, h6 {
     text-align: center;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
   }
 
   a.article_link {
