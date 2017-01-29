@@ -35,7 +35,7 @@ let stylesheet = Html.Unsafe.data {|
     font-family: "Trebuchet MS", Helvetica, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6, img {
     text-align: center;
   }
 
