@@ -43,7 +43,7 @@ end
 session Client(s : Server) # This type annotation is not required
   let time = get_time()
   s!Ping
-  branch Pong(t)
+  branch Pong(t) from s
     let ping = diff_time(t, time)
     print("Ping is: " ++ string_of_time(ping))
   end
