@@ -39,6 +39,11 @@ let stylesheet = Html.Unsafe.data {|
     text-align: center;
   }
 
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
   a.article_link {
     display: block;
     color: #202020;
