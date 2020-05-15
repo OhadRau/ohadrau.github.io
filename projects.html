@@ -14,21 +14,114 @@
       <a class="tab" href="/resume.pdf">Resume</a>
     </div>
     <div id="content">
-        <div class="box">
-            <h3>
-                <a class="icon-link" href="https://github.com/ohadrau/scala-risk">
-                  <img src="img/scala.png" alt="Scala Risk"/>
-                </a>
-                Scala Risk Game
-            </h3>
-            <img class="scrot" src="img/risk.png" alt="Gameplay Demo"/>
-            <div class="space2"></div>
-            As our group project for my Objects & Design class (CS2340), my team created
-            created an implementation of the Risk board game. Our game featured real-time
-            (rather than turn-based) gameplay, a WebSocket-based server, and a companion
-            mobile app. We designed the backend using Scala + Play + Akka and wrote the
-            frontend in JavaScript using Vue as well as a mobile version in Dart/Flutter.
-          </div>
+      <div class="box">
+        <h3>
+          <a class="icon-link" href="https://github.com/ohadrau/relevantpromises">
+            <img src="img/gh.png" alt="Deadlock Language Compiler"/>
+          </a>
+          Deadlock-detecting Programming Language
+        </h3>
+        <img class="scrot" src="img/Coq.png" alt="My Coq"/>
+        <div class="space2"></div>
+        In my research, I've been working in the <a href="https://habanero.cc.gatech.edu/">Habanero
+        Lab</a> at Georgia Tech under <a href="https://vsarkar.cc.gatech.edu/">Vivek Sarkar</a>
+        and <a href="https://calebvoss.com/">Caleb Voss</a>. My project consists of a programming
+        language designed to statically detect deadlocks. The language consists of a simple
+        concurrent programming language built on top of Java and utilizes promises as it's core
+        concurrency primitive. To aid in the static analysis, the language enforces that all
+        promises are fulfilled in every code path by utilizing substructural typing (future work
+        might visit static analysis for promise-dependency relationships to provide a complete
+        deadlock detection system). A simple compiler (complete with a type checker, small runtime,
+        and Java code generation) has been implemented in OCaml and I'm currently working to
+        formally prove the language's semantics using the Coq proof assistant.
+      </div>
+      <div class="box">
+        <h3>
+          <a class="icon-link" href="https://github.com/ohadrau/rust-os">
+            <img src="img/rust.png" alt="Rust Operating System"/>
+          </a>
+          Rust Operating System for Raspberry Pi
+        </h3>
+        When I took Operating Systems (CS3210), our semester long project involved building an
+        operating system for the Raspberry Pi Model 3B+ in Rust. Our OS featured a "networked"
+        bootloader over XModem+UART, support for the Pi's GPIO and timers, bin and bump memory
+        allocators, a FAT32 filesystem, preemptive multitasking, a number of syscalls, and
+        virtual memory. As our final project, my group focused on adding write support for the
+        filesystem along with full-disk encryption. We also added support for mounting multiple
+        filesystems, environment variables, file descriptors/locking files, command-line
+        arguments and built a userspace shell using some POSIX-like syscalls.
+
+        (Wow, too many class projects -- gotta find some time to work on some personal projects
+        soon).
+      </div>
+      <div class="box">
+        <h3>FPGA SRAM interface</h3>
+        <img class="scrot" src="img/VHDL.png" alt="VHDL code for the interface and simulation waveform"/>
+        <div class="space2"></div>
+        As our final project for my Digital Design Lab (ECE2031), we were tasked with designing
+        and implementing an SRAM interface for a simple computer on an Altera DE2 FPGA. Optimizing
+        for performance, we chose to create a device with qword addressability, which enabled users to
+        take advantage of spatial locality by performing multiple loads/stores simultaneously. We also
+        clocked our interface asychronously from the CPU, which allowed us to communicate with the SRAM
+        between CPU clock cycles. While not the most technically complex project on here, this project
+        really helped me learn more about VHDL and FPGAs in general.
+      </div>
+      <div class="box">
+        <h3>Optimizing Tiger Compiler</h3>
+        <img class="scrot" src="img/CFG.png" alt="Control flow graph and generated assembly"/>
+        <div class="space2"></div>
+        In my compilers class (CS4240), we completed a toy compiler for the Tiger programming
+        language. Using OCaml, our team developed a complete middle-end and backend for the
+        MIPS-32 architecture. Heavily utilizing dataflow analyses, the compiler featured
+        deadcode elimination, copy propogation, and Chaitin-Briggs register allocation. Best
+        of all, I got the chance to finally use Nanocaml in a real project!
+      </div>
+      <div class="box">
+        <h3>Pipelined Processor Datapath</h3>
+        <img class="scrot" src="img/pipeline.png" alt="Pipeline Datapath"/>
+        <div class="space2"></div>
+        For my Systems & Networks class (CS2200), we designed a number of datapaths for
+        a RISC computer based on MIPS. We individually designed a simple datapath for this
+        computer in a logic simulator called "CircuitSim", then built on top of it to add
+        interrupts and support for external I/O devices. As an extra credit project, I
+        created a 5-stage pipeline version of the computer, which supported data forwarding
+        and flushing the pipeline in order to resolve various hazards.
+      </div>
+      <div class="box">
+        <h3>
+          <a class="icon-link" href="https://github.com/ohadrau/node-v8/pulls">
+            <img src="img/wasm.png" alt="Node+V8 WebAssembly extensions"/>
+          </a>
+          WebAssembly N-API port
+        </h3>
+        In 2019, I spent my summer at Google working with all the awesome folks on the
+        Node.js team. As my internship project, I was tasked with rethinking how Node.js
+        programs can compile with native libraries (compiled to WebAssembly). After
+        prototyping a tool for generating glue code for bindings in C and JS, I decided on
+        an approach based around the Node API (N-API). N-API's ubiquitous use for native
+        libraries meant it was a great choice for porting existing libraries to WebAssembly
+        and, more importantly, it was designed to be extremely portable. Taking advantage of
+        this portability, I set out creating a port of the API to WebAssembly bindings. To
+        do so, I created a fork of V8 that supported providing vendor "built-ins" to
+        WebAssembly code. I then used C++ templates to generate type-safe wrappers for all
+        N-API functions and finally modified the Node module loader to support these
+        special WebAssembly "native modules."
+      </div>
+      <div class="box">
+          <h3>
+              <a class="icon-link" href="https://github.com/ohadrau/scala-risk">
+                <img src="img/scala.png" alt="Scala Risk"/>
+              </a>
+              Scala Risk Game
+          </h3>
+          <img class="scrot" src="img/risk.png" alt="Gameplay Demo"/>
+          <div class="space2"></div>
+          As our group project for my Objects & Design class (CS2340), my team created
+          created an implementation of the Risk board game. Our game featured real-time
+          (rather than turn-based) gameplay, a WebSocket-based server, and a companion
+          mobile app. We designed the backend using Scala + Play + Akka and wrote the
+          frontend in JavaScript using Vue as well as a mobile version in Dart/Flutter.
+      </div>
       <div class="box">
         <h3>
             <a class="icon-link" href="https://github.com/ohadrau/gba-8ball">
