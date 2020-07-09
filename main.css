@@ -96,3 +96,12 @@ img.scrot {
 .space2 {
   padding-top: 20px;
 }
+
+.tools:before {
+  content: "Built with: ";
+}
+
+.tools {
+  padding-top: 10px;
+  font-weight: bold;
+}

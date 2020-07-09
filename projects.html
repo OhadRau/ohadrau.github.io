@@ -16,12 +16,34 @@
     <div id="content">
       <div class="box">
         <h3>
+          <a class="icon-link" href="https://twosigma.com/">
+            <img src="img/2s.png" alt="Two Sigma"/>
+          </a>
+          Storage Monitor
+        </h3>
+        <div class="space1"></div>
+        During my internship at Two Sigma, I was tasked with building a platform for analyzing
+        and monitoring internal storage systems. As a data-driven company, hundreds of petabytes
+        of data are stored internally in various systems and data centers. To help keep track of
+        the growing data storage (as well as things like misconfigured storage), I built a REST
+        API that allowed you to query storage URIs and attributes like storage owners, total size,
+        etc. This was backed by a "scraper" service that communicated with the various storage
+        backends to collect the various metrics and settings for each storage location. The
+        eventual goal for this platform is enabling better resource management by eliminating
+        extra backups for unimportant data, cutting down on storage for abandoned data, and
+        helping users optimize caching/pinning for their data to enable better performance.
+        <div class="tools">
+          Python, Flask, PostgreSQL, SQLite, ElasticSearch, lots of internal tools
+        </div>
+      </div>
+      <div class="box">
+        <h3>
           <a class="icon-link" href="https://github.com/ohadrau/relevantpromises">
             <img src="img/gh.png" alt="Deadlock Language Compiler"/>
           </a>
           Deadlock-detecting Programming Language
         </h3>
-        <img class="scrot" src="img/Coq.png" alt="My Coq"/>
+        <img class="scrot" src="img/Coq.png" alt="Some Coq Proofs"/>
         <div class="space2"></div>
         In my research, I've been working in the <a href="https://habanero.cc.gatech.edu/">Habanero
         Lab</a> at Georgia Tech under <a href="https://vsarkar.cc.gatech.edu/">Vivek Sarkar</a>
@@ -34,6 +56,9 @@
         deadlock detection system). A simple compiler (complete with a type checker, small runtime,
         and Java code generation) has been implemented in OCaml and I'm currently working to
         formally prove the language's semantics using the Coq proof assistant.
+        <div class="tools">
+          OCaml, Coq, LaTeX, Java, Type Theory
+        </div>
       </div>
       <div class="box">
         <h3>
@@ -53,6 +78,9 @@
 
         (Wow, too many class projects -- gotta find some time to work on some personal projects
         soon).
+        <div class="tools">
+          Rust, ARMv8/aarch64 assembly, Raspberry Pi
+        </div>
       </div>
       <div class="box">
         <h3>FPGA SRAM interface</h3>
@@ -65,6 +93,9 @@
         clocked our interface asychronously from the CPU, which allowed us to communicate with the SRAM
         between CPU clock cycles. While not the most technically complex project on here, this project
         really helped me learn more about VHDL and FPGAs in general.
+        <div class="tools">
+          Altera FPGAs (DE2), VHDL, SRAM, Quartus, Logic Analyzers, Oscilloscopes
+        </div>
       </div>
       <div class="box">
         <h3>Optimizing Tiger Compiler</h3>
@@ -75,6 +106,9 @@
         MIPS-32 architecture. Heavily utilizing dataflow analyses, the compiler featured
         deadcode elimination, copy propogation, and Chaitin-Briggs register allocation. Best
         of all, I got the chance to finally use Nanocaml in a real project!
+        <div class="tools">
+          OCaml, Nanocaml, OCamlGraph, MIPS-32, Dataflow Analysis
+        </div>
       </div>
       <div class="box">
         <h3>Pipelined Processor Datapath</h3>
@@ -86,6 +120,9 @@
         interrupts and support for external I/O devices. As an extra credit project, I
         created a 5-stage pipeline version of the computer, which supported data forwarding
         and flushing the pipeline in order to resolve various hazards.
+        <div class="tools">
+          CircuitSim (logic simulator), "LC-2200" ISA
+        </div>
       </div>
       <div class="box">
         <h3>
@@ -106,6 +143,9 @@
         WebAssembly code. I then used C++ templates to generate type-safe wrappers for all
         N-API functions and finally modified the Node module loader to support these
         special WebAssembly "native modules."
+        <div class="tools">
+          C++, V8, Node.js + N-API, C, WebAssembly, TypeScript, JavaScript
+        </div>
       </div>
       <div class="box">
           <h3>
@@ -121,6 +161,9 @@
           (rather than turn-based) gameplay, a WebSocket-based server, and a companion
           mobile app. We designed the backend using Scala + Play + Akka and wrote the
           frontend in JavaScript using Vue as well as a mobile version in Dart/Flutter.
+          <div class="tools">
+            Scala, Play, Akka, WebSockets, JavaScript, Vue, Dart, Flutter
+          </div>
       </div>
       <div class="box">
         <h3>
@@ -137,6 +180,9 @@
         engine I wrote that utilizes fixed-point math. Drawing is done mainly using
         sprites (for the balls) and affine sprites (for the cue, i.e. sprites with a
         transformation matrix).
+        <div class="tools">
+          C, GBA BIOS
+        </div>
       </div>
       <div class="box">
         <h3>
@@ -154,6 +200,9 @@
         same way that Electron and Flutter provide. The project was originally created
         by <a href="https://github.com/bryphe">Bryan Phelps</a>, and I'm one of many
         collaborators for the project.
+        <div class="tools">
+          OCaml/ReasonML, C, GLFW, WebGL, JavaScript, SDL2
+        </div>
       </div>
       <div class="box">
         <h3>
@@ -171,6 +220,9 @@
         Yoshida's research into global session type synthesis.</a> The language itself
         is based loosely on Ruby and Elixir and compiles to Erlang code, but is designed
         around a new paradigm for actor programming using first-class session objects.
+        <div class="tools">
+          OCaml, Erlang/BEAM VM, Multiparty Session Types
+        </div>
       </div>
       <div class="box">
         <h3>
@@ -191,6 +243,9 @@
         students' performance. The latest revision of the web app is written in Crystal
         (using Kemal) and ReasonML (using ReasonReact), while the mobile app is written
         in Flutter.
+        <div class="tools">
+          Crystal, Kemal, ReasonML, React, Python, Qt, Ruby, Sinatra, Flutter, Dart, Postgres, GCP
+        </div>
       </div>
       <div class="box">
         <h3>
@@ -209,6 +264,9 @@
         prototype of what such a library could look like. Though not yet battle-tested,
         this library provides a number of powerful abstractions for writing compilers
         quickly and easily.
+        <div class="tools">
+          OCaml, Nanopass Compilers, PPX preprocessors
+        </div>
       </div>
       <div class="box">
         <h3>Kesef</h3>
@@ -219,6 +277,9 @@
         feeds to create a database of company filings. I also added some more features,
         such as rudimentary parsing of the XBRL documents to create tables of financial
         data and sourcing trading information from the IEX Trading API.
+        <div class="tools">
+          Perl6, XML (XPath, XQuery, and XSLT), IEX API
+        </div>
       </div>
       <div class="box">
         <h3>
@@ -234,6 +295,9 @@
         After a failed first attempt using the Jasonette framework, we switched to
         Flutter (and fell in love with it!). The backend of the app was implemented in
         Ruby using Sinatra and PostgreSQL.
+        <div class="tools">
+          Flutter, Dart, Ruby, Sinatra, PostgreSQL
+        </div>
       </div>
     </div>
   </body>
