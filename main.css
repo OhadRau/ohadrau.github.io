@@ -73,6 +73,8 @@ body {
 }
 
 .icon-link > img {
+  max-width: 2em;
+  object-fit: contain;
   max-height: 2em;
   padding-left: 1em;
   padding-right: 1em;
