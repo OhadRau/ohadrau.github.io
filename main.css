@@ -78,10 +78,44 @@ body {
   padding-right: 1em;
 }
 
+.icon-link-2x > img {
+  width: 3em;
+  object-fit: contain;
+  height: 3em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 h3 > .icon-link > img {
   max-height: 2em;
   padding-left: 0;
   padding-right: 0.25em;
+}
+
+h2 > .icon-link-2x > img {
+  height: 3em;
+  padding-left: 0;
+  padding-right: 0.25em;
+}
+
+.job {
+  margin-bottom: 2em;
+}
+
+.job-header > h2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.job-header-line2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 img.scrot {
