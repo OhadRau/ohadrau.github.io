@@ -160,6 +160,7 @@ img.scrot {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .image-grid > img {
