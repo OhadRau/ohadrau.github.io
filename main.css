@@ -102,6 +102,10 @@ h2 > .icon-link-2x > img {
   margin-bottom: 2em;
 }
 
+.job:last-child {
+  margin-bottom: 0;
+}
+
 .job-header > h2 {
   display: flex;
   flex-direction: row;
