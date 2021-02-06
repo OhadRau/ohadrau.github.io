@@ -40,23 +40,27 @@
       <div class="box">
         <h3>
           <a class="icon-link" href="https://github.com/ohadrau/relevantpromises">
-            <img src="img/gh.png" alt="Deadlock Language Compiler"/>
+            <img src="img/gh.png" alt="Promise Language Compiler"/>
           </a>
-          Deadlock-detecting Programming Language
+          Safe Promise-based Programming Language
         </h3>
-        <img class="scrot" src="img/Coq.png" alt="Some Coq Proofs"/>
+        <img class="scrot" src="img/type-system.png" alt="The language's type system"/>
         <div class="space2"></div>
         In my research, I've been working in the <a href="https://habanero.cc.gatech.edu/">Habanero
-        Lab</a> at Georgia Tech under <a href="https://vsarkar.cc.gatech.edu/">Vivek Sarkar</a>
-        and <a href="https://calebvoss.com/">Caleb Voss</a>. My project consists of a programming
-        language designed to statically detect deadlocks. The language consists of a simple
-        concurrent programming language built on top of Java and utilizes promises as it's core
-        concurrency primitive. To aid in the static analysis, the language enforces that all
-        promises are fulfilled in every code path by utilizing substructural typing (future work
-        might visit static analysis for promise-dependency relationships to provide a complete
-        deadlock detection system). A simple compiler (complete with a type checker, small runtime,
-        and Java code generation) has been implemented in OCaml and I'm currently working to
-        formally prove the language's semantics using the Coq proof assistant.
+        Lab</a> at Georgia Tech alongside <a href="https://vsarkar.cc.gatech.edu/">Prof. Vivek Sarkar</a>
+        and <a href="https://calebvoss.com/">Dr. Caleb Voss</a>. We investigated a language designed to
+        statically detect certain bugs in promise-based programs. For example, our language guarantees
+        that a promise can never be fulfilled twice and that the programmer cannot ever forget to
+        fulfill the promise. This has some far-reaching effects: it's able to detect many common bugs
+        that result from incorrect use of promises, it ensures that promises are used consistently (i.e.
+        there's never a race to fulfill a promise), and it allows for easy instrumentation to dynamically
+        detect deadlocks. This is all accomplished using a linear type system, in which promises are split
+        into read handles and write handles (think <samp>promise</samp> vs. <samp>future</samp> in C++). The
+        language consists of a simple concurrent programming language built on top of Java and utilizes
+        promises as it's core concurrency primitive. A simple compiler (complete with a type checker, small
+        runtime, and Java code generation) has been implemented in OCaml. We also defined a formal operational
+        semantics for the language and used it to prove the guarantees of the language. (I also got to play
+        around with the Coq proof assistant, though found it too tedious for a few of the proofs).
         <div class="tools">
           OCaml, Coq, LaTeX, Java, Type Theory
         </div>
