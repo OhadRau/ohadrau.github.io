@@ -22,7 +22,7 @@
         </div>
 
         Hi, I'm Ohad Rau.
-        I'm currently a third-year student at Georgia Tech pursuing a B.S. in
+        I'm currently a fourth-year student at Georgia Tech pursuing a B.S. in
         Computer Science with a concentration on systems/architecture and computer
         modeling. I'm also a co-founder/software engineer at
         <a href="https://rolltrax.com">Rolltrax</a>. In terms of CS, my interests
@@ -55,7 +55,7 @@
             <div>
               <b>Coursework:</b> Compilers, Operating Systems, Digital Design, Systems & Networks,
               Computer Organization, Algorithm Design, Discrete Math, Algorithms & Data Structures, Programming Languages,
-              Object-Oriented Design, Probability & Statistics.
+              Object-Oriented Design, Probability & Statistics, Machine Learning, Advanced Computer Architecture.
             </div>
             <div>
               <b>Research:</b>
@@ -74,7 +74,7 @@
               <a class="icon-link icon-link-2x" href="https://janestreet.com">
                 <img src="img/janestreet.png" alt="Jane Street"/>
               </a>
-              Jane Street Capital
+              Jane Street Capital &mdash; Networking Dev &amp; Commodities
             </h2>
             <div class="job-header-line2">
               <h3>Software Engineering Intern</h3>
@@ -82,7 +82,33 @@
             </div>
           </div>
           <div class="job-description">
-            <i>Coming soon...</i>
+            <p>
+              <b>Created a router configuration generator for multicast networks.</b> As with most trading firms, Jane Street makes
+              <a href="https://signalsandthreads.com/multicast-and-the-markets/">extensive use of multicast networking</a>. Each
+              time a new multicast network gets set up (e.g. building up a new data center) Network Engineers need to plan out the
+              basic layout of the network, and then configure each router to know about the various groups, how to route messages,
+              etc. This second step is a lot of work, and often requires duplicating similar information between different routers.
+              And repeated work also means that there's potential to make mistakes each time the information is added to a new router.
+              To improve this process, I spent the first half of my internship extending the internal networking library to parse,
+              format, and generate these multicast configs. The final step of the project was setting up a tool that network engineers
+              could use to translate their high-level description of a new data center into the individual configuration files for
+              each router.
+            </p>
+            <p>
+              <b>Added smarter caching to data-fetching framework.</b> The second half of my internship was spent on the Commodities
+              trading desk, where my main project consisted of improving caching in a new framework called
+              <a href="https://blog.janestreet.com/what-the-interns-have-wrought-2021/#memoization-in-datafetcher">Datafetcher</a>.
+              Datafetcher is essentially a fancy dependency injection framework, in that it provides the usual dependency injection
+              features (easy testing) but can also automatically batch fetches and cache their results. A few internal apps had
+              already been converted to using Datafetcher, and while it showed some instant performance improvements, there were
+              still some situations where caching wasn't good enough. In particular, sometimes apps would fetch the same data multiple
+              times and then run some further computations on the fetched data. While the initial fetches were all cached correctly,
+              programs still had to repeat all the subsequent work because the final results of computations weren't cached. Since the
+              computations all used deferred evaluation, it wasn't possible to simply memoize the results with existing tools. I spent
+              a few weeks coming up with an interface for memoizing these computations (with the goal of making it type-safe and
+              easy-to-use), then converted an existing app to use Datafetcher and spent some time documenting best practices for the
+              framework.
+            </p>
           </div>
         </div>
         <div class="job">
